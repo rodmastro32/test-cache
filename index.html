@@ -7,8 +7,30 @@
     <title>Vite + React + TS</title>
     <script type="module" crossorigin src="/test-cache/assets/index-CVimTsDs.js"></script>
     <link rel="stylesheet" crossorigin href="/test-cache/assets/index-D8b4DHJx.css">
-  <link rel="manifest" href="/test-cache/manifest.webmanifest"><script id="vite-plugin-pwa:inline-sw">if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/test-cache/sw.js', { scope: '/test-cache/' })})}</script></head>
+  <link rel="manifest" href="/test-cache/manifest.webmanifest"></head>
   <body>
     <div id="root"></div>
+    <script>
+      // Get path from window variable
+      const webviewPath = window.path || "";
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          // Register service worker with query parameter
+          navigator.serviceWorker
+            .register(
+              `/sw.js${
+                webviewPath ? `?path=${encodeURIComponent(webviewPath)}` : ""
+              }`
+            )
+            .then((registration) => {
+              console.log("ServiceWorker registration successful");
+            })
+            .catch((error) => {
+              console.error("ServiceWorker registration failed:", error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
