@@ -8,23 +8,60 @@
     <script>
       // Get path from window variable
       const webviewPath = window.path || "";
+      console.log(
+        "%c Client: Starting Service Worker Registration 🔄",
+        "background: #222; color: #bada55; font-size: 20px; padding: 10px;"
+      );
 
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           // Register service worker with query parameter
           navigator.serviceWorker
             .register(
-              `sw.js${
+              `/sw.js${
                 webviewPath ? `?path=${encodeURIComponent(webviewPath)}` : ""
               }`
             )
             .then((registration) => {
-              console.log("ServiceWorker registration successful");
+              console.log(
+                "%c Client: ServiceWorker registration successful ✅",
+                "background: #222; color: #bada55; font-size: 16px;"
+              );
+              console.log(
+                "%c Client: ServiceWorker scope:",
+                "background: #222; color: #bada55; font-size: 16px;",
+                registration.scope
+              );
+
+              // Log when the service worker becomes active
+              registration.addEventListener("activate", () => {
+                console.log(
+                  "%c Client: ServiceWorker activated 🚀",
+                  "background: #222; color: #bada55; font-size: 16px;"
+                );
+              });
+
+              // Log when the service worker is controlling the page
+              registration.addEventListener("controllerchange", () => {
+                console.log(
+                  "%c Client: ServiceWorker is now controlling the page 🎮",
+                  "background: #222; color: #bada55; font-size: 16px;"
+                );
+              });
             })
             .catch((error) => {
-              console.error("ServiceWorker registration failed:", error);
+              console.error(
+                "%c Client: ServiceWorker registration failed ❌",
+                "background: #222; color: #ff4444; font-size: 16px;",
+                error
+              );
             });
         });
+      } else {
+        console.error(
+          "%c Client: ServiceWorker not supported ❌",
+          "background: #222; color: #ff4444; font-size: 16px;"
+        );
       }
     </script>
     <script type="module" crossorigin src="/test-cache/assets/index-CVimTsDs.js"></script>
