@@ -19,7 +19,7 @@
           // Register service worker with query parameter
           navigator.serviceWorker
             .register(
-              `/sw.js${
+              `sw.js${
                 webviewPath ? `?path=${encodeURIComponent(webviewPath)}` : ""
               }`
             )
