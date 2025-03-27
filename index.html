@@ -17,17 +17,18 @@
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           // Register service worker with query parameter
+          const swUrl = new URL("sw.js", window.location.href);
+          if (webviewPath) {
+            swUrl.searchParams.set("path", encodeURIComponent(webviewPath));
+          }
+
           navigator.serviceWorker
-            .register(
-              `sw.js${
-                webviewPath ? `?path=${encodeURIComponent(webviewPath)}` : ""
-              }`
-            )
+            .register(swUrl)
             .then((registration) => {
               console.log(
-                webviewPath,
                 "%c Client: ServiceWorker registration successful ✅",
-                "background: #222; color: #bada55; font-size: 16px;"
+                "background: #222; color: #bada55; font-size: 16px;",
+                { path: webviewPath }
               );
               console.log(
                 "%c Client: ServiceWorker scope:",
@@ -69,7 +70,7 @@
     <script type="module" crossorigin src="/test-cache/assets/js/index-jw9xorNu.js"></script>
     <link rel="modulepreload" crossorigin href="/test-cache/assets/js/vendor-DPx9Otuh.js">
     <link rel="stylesheet" crossorigin href="/test-cache/assets/css/index-Dg8jL3ag.css">
-  <link rel="manifest" href="/test-cache/manifest.webmanifest"><script id="vite-plugin-pwa:inline-sw">if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/test-cache/sw.js', { scope: '/test-cache/' })})}</script></head>
+  <link rel="manifest" href="/test-cache/manifest.webmanifest"></head>
   <body>
     <div id="root"></div>
   </body>
