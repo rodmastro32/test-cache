@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/test-cache/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
-    <script id="vite-plugin-pwa:inline-sw">
+    <script>
       // Get path from window variable
       const webviewPath = window.path || "";
       console.log(
@@ -68,7 +68,7 @@
     <script type="module" crossorigin src="/test-cache/assets/js/index-jw9xorNu.js"></script>
     <link rel="modulepreload" crossorigin href="/test-cache/assets/js/vendor-DPx9Otuh.js">
     <link rel="stylesheet" crossorigin href="/test-cache/assets/css/index-Dg8jL3ag.css">
-  <link rel="manifest" href="/test-cache/manifest.webmanifest"></head>
+  <link rel="manifest" href="/test-cache/manifest.webmanifest"><script id="vite-plugin-pwa:inline-sw">if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/test-cache/sw.js', { scope: '/test-cache/' })})}</script></head>
   <body>
     <div id="root"></div>
   </body>
